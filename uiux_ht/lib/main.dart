@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
                 toolbarHeight: 60,
                 actions: [
                   Container(
-                      padding: const EdgeInsets.only(right: 1300),
+                      padding: const EdgeInsets.only(right: 1320),
                       child: ButtonBar(children: [
                         TextButton(
                           child: const Text(
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
                       onPressed: () => {},
                       icon: const Icon(Icons.search, color: Colors.white)),
                   PopupMenuButton(
-                      shape: Border.all(color: Colors.white),
+                      shape: Border.all(color: Colors.white, width: 2),
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       offset: const Offset(100, 60),
                       color: Colors.orange.withOpacity(0.9),
@@ -69,7 +69,12 @@ class MyApp extends StatelessWidget {
                       onPressed: () => {},
                       icon: const Icon(Icons.person, color: Colors.white)),
                 ],
-                title: const Text("Placeholder"),
+                title: const Text("P14",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.bold)),
                 backgroundColor: Colors.deepOrange),
             body: Container(
                 decoration: const BoxDecoration(
@@ -117,6 +122,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// Container for each game-image
 class gameContainer extends StatelessWidget {
   String img_path;
   gameContainer({Key? key, required this.img_path}) : super(key: key);
@@ -135,11 +141,14 @@ class gameContainer extends StatelessWidget {
         width: 370,
         height: 200,
         child: Container(
-            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 2),
+                borderRadius: const BorderRadius.all(Radius.circular(3))),
             child: Image.asset(img_path, fit: BoxFit.fill)));
   }
 }
 
+// Container for the texts in the Bottom bar, creates a TextButton also for those texts also
 class textContainer extends StatelessWidget {
   String text;
   textContainer({Key? key, required this.text}) : super(key: key);
@@ -147,14 +156,19 @@ class textContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(right: 30, left: 30, top: 5, bottom: 5),
+        padding: const EdgeInsets.only(right: 20, left: 20, top: 5, bottom: 5),
         alignment: Alignment.center,
-        child: Text(text,
-            style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontFamily: "Inter",
-                fontWeight: FontWeight.bold)));
+        child: TextButton(
+          child: Text(text),
+          style: TextButton.styleFrom(
+              primary: Colors.white,
+              textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.bold)),
+          onPressed: () {},
+        ));
   }
 }
 
@@ -168,6 +182,7 @@ var IMGS = [
   '/UNO.png'
 ];
 
+// Creates a Grid for each game category with the category name being the first child of the column
 class gameGrid extends StatelessWidget {
   String text;
 
@@ -206,6 +221,7 @@ class gameGrid extends StatelessWidget {
 
 const double palloKoko = 5;
 
+// Creates the friendlist as a PopUpMenuItem
 PopupMenuItem FriendsList() {
   return PopupMenuItem(
       padding:
