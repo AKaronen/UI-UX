@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
                           style: TextButton.styleFrom(
                               primary: Colors.white,
                               textStyle: const TextStyle(
-                                  fontSize: 20, fontFamily: "Roboto")),
+                                  fontSize: 20, fontFamily: "Inter")),
                           onPressed: () {},
                         ),
                         TextButton(
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                           style: TextButton.styleFrom(
                               primary: Colors.white,
                               textStyle: const TextStyle(
-                                  fontSize: 20, fontFamily: "Roboto")),
+                                  fontSize: 20, fontFamily: "Inter")),
                           onPressed: () {},
                         ),
                         TextButton(
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
                           style: TextButton.styleFrom(
                               primary: Colors.white,
                               textStyle: const TextStyle(
-                                  fontSize: 20, fontFamily: "Roboto")),
+                                  fontSize: 20, fontFamily: "Inter")),
                           onPressed: () {},
                         ),
                       ])),
@@ -153,7 +153,7 @@ class textContainer extends StatelessWidget {
             style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
-                fontFamily: "Roboto",
+                fontFamily: "Inter",
                 fontWeight: FontWeight.bold)));
   }
 }
@@ -184,7 +184,7 @@ class gameGrid extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(text,
                     textAlign: TextAlign.left,
-                    style: const TextStyle(fontSize: 30, fontFamily: "Roboto")),
+                    style: const TextStyle(fontSize: 30, fontFamily: "Inter")),
               ),
               Row(children: <Widget>[
                 gameContainer(img_path: IMGS[0]),
@@ -222,7 +222,7 @@ PopupMenuItem FriendsList() {
                     '   Groups and Friends',
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: "Roboto",
+                      fontFamily: "Inter",
                       fontWeight: FontWeight.bold,
                       height: 2,
                       fontSize: 16,
@@ -238,7 +238,7 @@ PopupMenuItem FriendsList() {
                       'Friends: (3 / 20)',
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: "Roboto",
+                        fontFamily: "Inter",
                         fontWeight: FontWeight.bold,
                         fontSize: 14,
                       ),
@@ -248,7 +248,7 @@ PopupMenuItem FriendsList() {
                     'In Game: (1)',
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: "Roboto",
+                      fontFamily: "Inter",
                       fontSize: 13,
                     ),
                   ),
@@ -262,7 +262,7 @@ PopupMenuItem FriendsList() {
                       '  ExampleFriend1 - (Catan)',
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: "Roboto",
+                        fontFamily: "Inter",
                         fontSize: 11,
                       ),
                     )
@@ -272,7 +272,7 @@ PopupMenuItem FriendsList() {
                     'Online: (2)',
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: "Roboto",
+                      fontFamily: "Inter",
                       fontSize: 13,
                     ),
                   ),
@@ -286,7 +286,7 @@ PopupMenuItem FriendsList() {
                       '  ExampleFriend2',
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: "Roboto",
+                        fontFamily: "Inter",
                         fontSize: 11,
                       ),
                     )
@@ -301,7 +301,7 @@ PopupMenuItem FriendsList() {
                       '  ExampleFriend3',
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: "Roboto",
+                        fontFamily: "Inter",
                         fontSize: 11,
                       ),
                     )
@@ -317,7 +317,7 @@ PopupMenuItem FriendsList() {
                       'Offline: (18)',
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: "Roboto",
+                        fontFamily: "Inter",
                         fontSize: 13,
                       ),
                     )
@@ -333,7 +333,7 @@ PopupMenuItem FriendsList() {
                       'Groups:',
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: "Roboto",
+                        fontFamily: "Inter",
                         fontWeight: FontWeight.bold,
                         fontSize: 14,
                       ),
@@ -350,7 +350,7 @@ PopupMenuItem FriendsList() {
                       'CatanColonialists: (5 / 57)',
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: "Roboto",
+                        fontFamily: "Inter",
                         fontSize: 13,
                       ),
                     )
@@ -366,7 +366,7 @@ PopupMenuItem FriendsList() {
                       'UnoReverse: (480 / 1377)',
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: "Roboto",
+                        fontFamily: "Inter",
                         fontSize: 13,
                       ),
                     )
@@ -382,7 +382,7 @@ PopupMenuItem FriendsList() {
                       'MorrisMasters: (3 / 13)',
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: "Roboto",
+                        fontFamily: "Inter",
                         fontSize: 13,
                       ),
                     )
