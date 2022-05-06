@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,7 +9,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,24 +16,56 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(primaryColor: Colors.orange),
         home: Scaffold(
             appBar: AppBar(
+                toolbarHeight: 60,
                 actions: [
+                  Container(
+                      padding: const EdgeInsets.only(right: 1300),
+                      child: ButtonBar(children: [
+                        TextButton(
+                          child: const Text(
+                            "Home",
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          style: TextButton.styleFrom(
+                              primary: Colors.white,
+                              textStyle: const TextStyle(
+                                  fontSize: 20, fontFamily: "Roboto")),
+                          onPressed: () {},
+                        ),
+                        TextButton(
+                          child: const Text("Community"),
+                          style: TextButton.styleFrom(
+                              primary: Colors.white,
+                              textStyle: const TextStyle(
+                                  fontSize: 20, fontFamily: "Roboto")),
+                          onPressed: () {},
+                        ),
+                        TextButton(
+                          child: const Text("Shop"),
+                          style: TextButton.styleFrom(
+                              primary: Colors.white,
+                              textStyle: const TextStyle(
+                                  fontSize: 20, fontFamily: "Roboto")),
+                          onPressed: () {},
+                        ),
+                      ])),
                   IconButton(
                       iconSize: 40,
-                      padding: EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       onPressed: () => {},
                       icon: const Icon(Icons.search, color: Colors.white)),
                   PopupMenuButton(
                       shape: Border.all(color: Colors.white),
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      offset: const Offset(65, 65),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      offset: const Offset(100, 60),
                       color: Colors.orange.withOpacity(0.9),
                       tooltip: "Friends and Groups",
                       iconSize: 40,
-                      icon: Icon(Icons.group),
+                      icon: const Icon(Icons.group),
                       itemBuilder: (context) => [FriendsList()]),
                   IconButton(
                       iconSize: 40,
-                      padding: EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       onPressed: () => {},
                       icon: const Icon(Icons.person, color: Colors.white)),
                 ],
@@ -40,7 +74,7 @@ class MyApp extends StatelessWidget {
             body: Container(
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        opacity: 0.5,
+                        opacity: 0.7,
                         image: AssetImage("/background.png"),
                         fit: BoxFit.cover)),
                 child: ListView(
@@ -84,7 +118,8 @@ class MyApp extends StatelessWidget {
 }
 
 class gameContainer extends StatelessWidget {
-  const gameContainer({Key? key}) : super(key: key);
+  String img_path;
+  gameContainer({Key? key, required this.img_path}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +136,7 @@ class gameContainer extends StatelessWidget {
         height: 200,
         child: Container(
             decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-            child: Image.asset('assets/UNO.png', fit: BoxFit.fill)));
+            child: Image.asset(img_path, fit: BoxFit.fill)));
   }
 }
 
@@ -123,12 +158,23 @@ class textContainer extends StatelessWidget {
   }
 }
 
+var IMGS = [
+  '/catan.jpg',
+  '/carcassonne.jpg',
+  '/chess.jpg',
+  '/guesswho.png',
+  '/monopoly.jpg',
+  '/nmm.png',
+  '/UNO.png'
+];
+
 class gameGrid extends StatelessWidget {
   String text;
 
   gameGrid({Key? key, required this.text}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    IMGS.shuffle();
     return Container(
         padding: const EdgeInsets.only(bottom: 25),
         child: Column(
@@ -141,11 +187,11 @@ class gameGrid extends StatelessWidget {
                     style: const TextStyle(fontSize: 30, fontFamily: "Roboto")),
               ),
               Row(children: <Widget>[
-                const gameContainer(),
-                const gameContainer(),
-                const gameContainer(),
-                const gameContainer(),
-                const gameContainer(),
+                gameContainer(img_path: IMGS[0]),
+                gameContainer(img_path: IMGS[1]),
+                gameContainer(img_path: IMGS[2]),
+                gameContainer(img_path: IMGS[3]),
+                gameContainer(img_path: IMGS[4]),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         shape: const CircleBorder(),
@@ -162,204 +208,211 @@ const double palloKoko = 5;
 
 PopupMenuItem FriendsList() {
   return PopupMenuItem(
-      padding: const EdgeInsets.all(0),
-      child: Container(
-        decoration: BoxDecoration(color: Colors.orange.withOpacity(0.0)),
-        child: Column(children: <Widget>[
-          const Text(
-            '   Groups and Friends',
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.bold,
-              height: 2,
-              fontSize: 16,
-            ),
-          ),
-          Row(children: const [
-            Text(' '),
-            Icon(
-              Icons.arrow_drop_up_sharp,
-              size: 24,
-            ),
-            Text(
-              'Friends: (3 / 20)',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-            )
-          ]),
-          const Text(
-            'In Game: (1)',
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: "Roboto",
-              fontSize: 13,
-            ),
-          ),
-          Row(children: const [
-            Text('     '),
-            Icon(
-              Icons.circle_rounded,
-              size: palloKoko,
-            ),
-            Text(
-              '  ExampleFriend1 - (Catan)',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: "Roboto",
-                fontSize: 11,
-              ),
-            )
-          ]),
-          const Text('', style: TextStyle(fontSize: 5)),
-          const Text(
-            'Online: (2)',
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: "Roboto",
-              fontSize: 13,
-            ),
-          ),
-          Row(children: const [
-            Text('     '),
-            Icon(
-              Icons.circle_rounded,
-              size: palloKoko,
-            ),
-            Text(
-              '  ExampleFriend2',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: "Roboto",
-                fontSize: 11,
-              ),
-            )
-          ]),
-          Row(children: const [
-            Text('     '),
-            Icon(
-              Icons.circle_rounded,
-              size: palloKoko,
-            ),
-            Text(
-              '  ExampleFriend3',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: "Roboto",
-                fontSize: 11,
-              ),
-            )
-          ]),
-          const Text('', style: TextStyle(fontSize: 5)),
-          Row(children: const [
-            Text(' '),
-            Icon(
-              Icons.arrow_drop_down_sharp,
-              size: 20,
-            ),
-            Text(
-              'Offline: (18)',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: "Roboto",
-                fontSize: 13,
-              ),
-            )
-          ]),
-          const Text('', style: TextStyle(fontSize: 6)),
-          Row(children: const [
-            Text(' '),
-            Icon(
-              Icons.arrow_drop_up_sharp,
-              size: 24,
-            ),
-            Text(
-              'Groups:',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-            )
-          ]),
-          const Text('', style: TextStyle(fontSize: 5)),
-          Row(children: const [
-            Text(' '),
-            Icon(
-              Icons.arrow_drop_down_sharp,
-              size: 20,
-            ),
-            Text(
-              'CatanColonialists: (5 / 57)',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: "Roboto",
-                fontSize: 13,
-              ),
-            )
-          ]),
-          const Text('', style: TextStyle(fontSize: 5)),
-          Row(children: const [
-            Text(' '),
-            Icon(
-              Icons.arrow_drop_down_sharp,
-              size: 20,
-            ),
-            Text(
-              'UnoReverse: (480 / 1377)',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: "Roboto",
-                fontSize: 13,
-              ),
-            )
-          ]),
-          const Text('', style: TextStyle(fontSize: 5)),
-          Row(children: const [
-            Text(' '),
-            Icon(
-              Icons.arrow_drop_down_sharp,
-              size: 20,
-            ),
-            Text(
-              'MorrisMasters: (3 / 13)',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: "Roboto",
-                fontSize: 13,
-              ),
-            )
-          ]),
-          const Text(''),
-          ElevatedButton(
-              onPressed: () {},
-              child: const Text('Send a friend request'),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.red.shade900),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                  )))),
-          const Text(''),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text('Create a Group'),
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.red.shade900),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-              )),
-            ),
-          ),
-          const Text(''),
-        ]),
-      ));
+      padding:
+          const EdgeInsets.only(right: 50, left: 50, top: 100, bottom: 100),
+      child: Transform.scale(
+          scale: 1.5,
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(color: Colors.orange.withOpacity(0.0)),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    '   Groups and Friends',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.bold,
+                      height: 2,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Row(children: const [
+                    Text(' '),
+                    Icon(
+                      Icons.arrow_drop_up_sharp,
+                      size: 24,
+                    ),
+                    Text(
+                      'Friends: (3 / 20)',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                    )
+                  ]),
+                  const Text(
+                    'In Game: (1)',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Roboto",
+                      fontSize: 13,
+                    ),
+                  ),
+                  Row(children: const [
+                    Text('     '),
+                    Icon(
+                      Icons.circle_rounded,
+                      size: palloKoko,
+                    ),
+                    Text(
+                      '  ExampleFriend1 - (Catan)',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Roboto",
+                        fontSize: 11,
+                      ),
+                    )
+                  ]),
+                  const Text('', style: TextStyle(fontSize: 5)),
+                  const Text(
+                    'Online: (2)',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Roboto",
+                      fontSize: 13,
+                    ),
+                  ),
+                  Row(children: const [
+                    Text('     '),
+                    Icon(
+                      Icons.circle_rounded,
+                      size: palloKoko,
+                    ),
+                    Text(
+                      '  ExampleFriend2',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Roboto",
+                        fontSize: 11,
+                      ),
+                    )
+                  ]),
+                  Row(children: const [
+                    Text('     '),
+                    Icon(
+                      Icons.circle_rounded,
+                      size: palloKoko,
+                    ),
+                    Text(
+                      '  ExampleFriend3',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Roboto",
+                        fontSize: 11,
+                      ),
+                    )
+                  ]),
+                  const Text('', style: TextStyle(fontSize: 5)),
+                  Row(children: const [
+                    Text(' '),
+                    Icon(
+                      Icons.arrow_drop_down_sharp,
+                      size: 20,
+                    ),
+                    Text(
+                      'Offline: (18)',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Roboto",
+                        fontSize: 13,
+                      ),
+                    )
+                  ]),
+                  const Text('', style: TextStyle(fontSize: 6)),
+                  Row(children: const [
+                    Text(' '),
+                    Icon(
+                      Icons.arrow_drop_up_sharp,
+                      size: 24,
+                    ),
+                    Text(
+                      'Groups:',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                    )
+                  ]),
+                  const Text('', style: TextStyle(fontSize: 5)),
+                  Row(children: const [
+                    Text(' '),
+                    Icon(
+                      Icons.arrow_drop_down_sharp,
+                      size: 20,
+                    ),
+                    Text(
+                      'CatanColonialists: (5 / 57)',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Roboto",
+                        fontSize: 13,
+                      ),
+                    )
+                  ]),
+                  const Text('', style: TextStyle(fontSize: 5)),
+                  Row(children: const [
+                    Text(' '),
+                    Icon(
+                      Icons.arrow_drop_down_sharp,
+                      size: 20,
+                    ),
+                    Text(
+                      'UnoReverse: (480 / 1377)',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Roboto",
+                        fontSize: 13,
+                      ),
+                    )
+                  ]),
+                  const Text('', style: TextStyle(fontSize: 5)),
+                  Row(children: const [
+                    Text(' '),
+                    Icon(
+                      Icons.arrow_drop_down_sharp,
+                      size: 20,
+                    ),
+                    Text(
+                      'MorrisMasters: (3 / 13)',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Roboto",
+                        fontSize: 13,
+                      ),
+                    )
+                  ]),
+                  const Text(''),
+                  ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Send a friend request'),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.red.shade900),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          )))),
+                  const Text(''),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Create a Group'),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.red.shade900),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      )),
+                    ),
+                  ),
+                  const Text(''),
+                ]),
+          )));
 }
